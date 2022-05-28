@@ -15,7 +15,21 @@
                 crossorigin="anonymous"></script>       
         <script src="platfrom.js">
         </script>
-        <script>
+    </head>
+    <body>
+        <div class="px-4 py-5 my-5 text-center">
+            <center><img src="w.png" width="5%" height="5%"></center>
+            <h1 class="display-5 fw-bold">WhoisW3?</h1>
+            <div class="col-lg-6 mx-auto">
+              <p class="lead fs-4" id="ip"></p>
+              <p class="lead fs-4" id="geo"></p>
+              <p class="lead fs-4" id="org"></p>
+              <p class="lead fs-4" id="dnsname"></p>
+              <p class="lead fs-4" id="system"></p>
+              <p class="lead fs-4" id="browser"></p>
+            </div>
+          </div>
+          <script>
             $.get("http://ip-api.com/json/", function(data){
                 var ip = document.getElementById("ip");
                 ip.innerHTML = "Your IP: " + data.query;
@@ -26,22 +40,12 @@
             }, "json");
             $.get("http://edns.ip-api.com/json/", function(data){
                 var dnsname = document.getElementById("dnsname");
-                dnsname.innerHTML = "Your DNS: " + data.ip;
+                dnsname.innerHTML = "Your DNS: " + data.dns.ip + ", " + data.dns.geo;
             }, "json");
             var system = document.getElementById("system");
-            system.innerHTML = "Your DNS: " + platform.os;
-        </script> 
-    </head>
-    <body>
-        <div class="px-4 py-5 my-5 text-center">
-            <h1 class="display-5 fw-bold">WhoisW3?</h1>
-            <div class="col-lg-6 mx-auto">
-              <p class="lead fs-4" id="ip"></p>
-              <p class="lead fs-4" id="geo"></p>
-              <p class="lead fs-4" id="org"></p>
-              <p class="lead fs-4" id="dnsname"></p>
-              <p class="lead fs-4" id="system"></p>
-            </div>
-          </div>
+            system.innerHTML = "Your OS: " + platform.os;
+            var browser = document.getElementById("browser");
+            browser.innerHTML = "Your browser: " + platform.name + " " + platform.version;
+          </script>
     </body>
 </html>
